@@ -19,7 +19,7 @@
 
 ### 1. 💽 Варіанти встановлення
 
-#### A) Windows installer https://itarmy.com.ua/instruction/#mhddos/#windows
+#### A) Проект для Windows https://github.com/ahovdryk/aio_reaper
 
 #### B) Python (якщо не працює - спробуйте `python` або `python3.10` замість `python3`)
 
