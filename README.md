@@ -1,4 +1,4 @@
-## Ukrainian Ripper Unoficial
+## Ukrainian Ripper Unofficial
 
 ### [English Version](/README-EN.md)
 
