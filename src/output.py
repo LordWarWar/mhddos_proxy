@@ -85,7 +85,7 @@ def print_banner(args):
         )
     rows.append(
         f"- {cl.YELLOW}{t('Complete documentation')}:{cl.RESET} - "
-        f"https://github.com/porthole-ascend-cinnamon/mhddos_proxy"
+        f"https://github.com/LordWarWar/mhddos_proxy"
     )
 
     print()
