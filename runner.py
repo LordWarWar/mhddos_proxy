@@ -132,8 +132,7 @@ async def run_ddos(
     is_old_version = (local_config['version'] < config['version'])
     if is_old_version:
         logger.warning(
-            f"{cl.CYAN}{t('A new version is available, update is recommended')}{cl.RESET}: "
-            "https://telegra.ph/Onovlennya-mhddos-proxy-04-16\n"
+            f"{cl.CYAN}{t('A new version is available, update is recommended')}{cl.RESET}"
         )
 
     http_methods, initial_capacity, fork_scale = (
@@ -455,15 +454,6 @@ def main():
             f"{cl.CYAN}{t('The `--debug` option is deprecated to avoid negative impact on performance')}{cl.RESET}"
         )
         print()
-
-    if not IS_AUTO_MH:
-        python_bin = os.path.basename(sys.executable)
-        if not python_bin.endswith('.exe'):  # windows is not supported
-            new_command = f'./runner.sh {python_bin} ' + ' '.join(sys.argv[1:])
-            logger.warning(
-                f"{cl.CYAN}{t('Try running with automatic updates')}: {new_command}{cl.RESET}"
-            )
-            print()
 
     processes = []
     mp.set_start_method("spawn")
