@@ -1,5 +1,4 @@
 import asyncio
-from geoip import geolite2
 from asyncio import gather
 from typing import Dict, List, Optional
 
@@ -36,7 +35,7 @@ async def _safe_resolve_host(host: str, semaphore: asyncio.Semaphore) -> Optiona
     try:
         async with semaphore:
             resolved = await _resolve_host(host)
-        if is_forbidden_ip(resolved) or geolite2.lookup(resolved).country=="UA":
+        if is_forbidden_ip(resolved):
             raise dns.exception.DNSException("resolved to unsupported address")
         return resolved
     except dns.exception.DNSException:
