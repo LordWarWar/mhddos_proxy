@@ -1,4 +1,5 @@
 import asyncio
+import geocoder
 from asyncio import gather
 from typing import Dict, List, Optional
 
@@ -35,7 +36,7 @@ async def _safe_resolve_host(host: str, semaphore: asyncio.Semaphore) -> Optiona
     try:
         async with semaphore:
             resolved = await _resolve_host(host)
-        if is_forbidden_ip(resolved):
+        if is_forbidden_ip(resolved) or geocoder.ip(resolved).country=="UA":
             raise dns.exception.DNSException("resolved to unsupported address")
         return resolved
     except dns.exception.DNSException:
