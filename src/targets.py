@@ -1,6 +1,6 @@
 import base64
 import json
-import geocoder
+from geoip import geolite2
 from typing import Dict, Optional, Set
 
 from cryptography.hazmat.primitives.ciphers.aead import ChaCha20Poly1305
@@ -84,7 +84,7 @@ class Target:
     @property
     def is_resolved(self) -> bool:
         if self.addr!=None:
-            if geocoder.ip(self.addr).country=="UA": return None
+            if geolite2.lookup(self.addr).country=="UA": return None
         return self.addr is not None
 
     @property
