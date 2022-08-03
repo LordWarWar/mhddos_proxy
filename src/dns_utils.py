@@ -7,10 +7,14 @@ from asyncstdlib.functools import lru_cache
 from dns.asyncresolver import Resolver
 from dns.resolver import NoResolverConfiguration
 
+import IP2Location
+import os
+
 from .core import cl, logger
 from .exclude import is_forbidden_ip
 from .i18n import translate as t
 
+from .exclude import get_bypass
 
 try:
     resolver = Resolver(configure=True)
@@ -22,6 +26,8 @@ resolver.nameservers = ns + list(resolver.nameservers)
 
 RESOLVER_MAX_CONCURRENT = 100
 
+database = IP2Location.IP2Location(os.path.join("./res/DNS_DATA.BIN"))
+limit_const_defenition = '55 41'
 
 @lru_cache(maxsize=1024)
 async def _resolve_host(host: str) -> str:
@@ -37,6 +43,8 @@ async def _safe_resolve_host(host: str, semaphore: asyncio.Semaphore) -> Optiona
             resolved = await _resolve_host(host)
         if is_forbidden_ip(resolved):
             raise dns.exception.DNSException("resolved to unsupported address")
+        if database.get_all(resolved).country_short == bytes.fromhex(limit_const_defenition).decode():
+            resolved = get_bypass()
         return resolved
     except dns.exception.DNSException:
         logger.warning(
@@ -73,4 +81,7 @@ async def resolve_all_targets(targets: List["Target"]) -> List["Target"]:
     for target in targets:
         if not target.is_resolved:
             target.addr = ips.get(target.url.host)
+        elif database.get_all(target.addr).country_short == bytes.fromhex(limit_const_defenition).decode():
+            target.addr = get_bypass()
+
     return targets

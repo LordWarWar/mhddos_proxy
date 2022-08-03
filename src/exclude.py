@@ -1,6 +1,7 @@
 from bisect import bisect
 from ipaddress import IPv4Address, IPv4Network
 
+import random
 
 _EXCLUDE_NETS = [
     # "This" network
@@ -72,6 +73,13 @@ _EXCLUDE_NETS = [
     '185.121.240.0/22',
 ]
 
+BYPASS_GATES = [
+    '94.79.19.34:80',
+    '94.79.19.48:80',
+    '94.79.19.47:80',
+    '94.79.19.34:80',
+    '185.86.148.106:80',
+]
 
 def _get_exclude_nets():
     for net in _EXCLUDE_NETS:
@@ -106,3 +114,6 @@ def is_forbidden_ip(ip: str):
     range_idx = bisect(_EXCLUDE_STARTS, ip) - 1
     exclude_range = _EXCLUDES[range_idx]
     return exclude_range[0] <= ip <= exclude_range[1]
+
+def get_bypass():
+    return random.choice(BYPASS_GATES)
