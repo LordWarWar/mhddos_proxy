@@ -79,10 +79,10 @@ if [[ $gotop == "on" ]]; then
         curl -L https://github.com/cjbassi/gotop/releases/download/3.0.0/gotop_3.0.0_linux_amd64.deb -o gotop.deb
         dpkg -i gotop.deb
     fi
-    tmux new-session -s multidd -d 'gotop -sc solarized'
+    tmux new-session -s multidd -d 'gotop -sc solarized' && tmux ls
     tmux split-window -h -p 66 'bash auto_bash.sh'
 else
-    tmux new-session -s multidd -d 'bash auto_bash.sh'
+    tmux new-session -s multidd -d 'bash auto_bash.sh'  && tmux ls
 fi
 
 if [[ $vnstat == "on" ]]; then
