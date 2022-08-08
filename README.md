@@ -25,6 +25,8 @@
 
 #### C) Docker
 
+    sudo docker run -it --rm --log-driver none --name multidd --pull always ghcr.io/lordwarwar/mhddos_proxy:latest
+
 Встановіть і запустіть Docker: https://docs.docker.com/desktop/#download-and-install
 
 ### 2. 🕹 Запуск
