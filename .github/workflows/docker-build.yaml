@@ -21,4 +21,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/lordwarwar/mhddos_proxy:old
+          tags: ghcr.io/lordwarwar/mhddos_proxy
