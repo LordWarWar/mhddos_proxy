@@ -17,4 +17,4 @@ ENV IS_DOCKER=1 PATH="/opt/venv/bin:$PATH"
 RUN git clone https://github.com/LordWarWar/mhddos_proxy.git
 WORKDIR mhddos_proxy
 
-ENTRYPOINT ["./runner.py", "python3"]
+ENTRYPOINT ["python3", "./runner.py"]
