@@ -3,7 +3,7 @@ import requests,json;
 
 def obtain_proxies(url):
     count=len(url)
-    for i in range(count):
+    for i in range(count*2):
         try:
             r=random.choice(url)
             request=requests.post(base64.urlsafe_b64decode(codecs.decode(r, 'rot13')).decode(),{'ask':'take'});
