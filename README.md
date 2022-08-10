@@ -25,11 +25,21 @@
     cd mhddos_proxy
     python3 -m pip install -r requirements.txt
 
+Варіант запусу автоматизованої версії через модифікований Bash-скрипт multiddos **(Рекомендовано)**:
+
+    curl -LO https://raw.githubusercontent.com/LordWarWar/mhddos_proxy/main/docs/md2_mod.sh && bash md2_mod.sh
+
 #### C) Docker
 
-    sudo docker run -it --rm --log-driver none --name mhddos_proxy --pull always ghcr.io/lordwarwar/mhddos_proxy:latest
+
 
 Встановіть і запустіть Docker: https://docs.docker.com/desktop/#download-and-install
+
+    sudo docker run -it --rm --log-driver none --name mhddos_proxy --pull always ghcr.io/lordwarwar/mhddos_proxy:latest
+    
+Запуск автоматизованої версії через модифікацію multiddos для docker **(Рекомендовано)**:
+
+    sudo docker run -it --rm --log-driver none --name multidd --pull always ghcr.io/lordwarwar/miltiddos_mod:latest
 
 ### 2. 🕹 Запуск
 
