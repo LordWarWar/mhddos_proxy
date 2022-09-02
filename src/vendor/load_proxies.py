@@ -16,5 +16,19 @@ def obtain_proxies(url):
                     continue
             except:
                 continue
+            for p in range(len(data['respons'])):
+                if not check_proxy(data['respons'][p]):
+                    data['respons'].pop(p)
             return data['respons']
         return []
+        
+def check_proxy(proxy):
+    exept_list = {
+        "//0"
+        }
+    if len(proxy) < 17:
+        return False
+    for i in exept_list:
+        if i in proxy:
+            return False
+    return True
