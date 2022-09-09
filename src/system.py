@@ -228,10 +228,13 @@ def detect_local_iface() -> Optional[str]:
 
 def fetch_netstats(iface: Optional[str]) -> Optional['psutil._common.snetio']:
     with suppress(Exception):
-        if iface is None:
-            return psutil.net_io_counters()
+        if not iface is None:
+            res = psutil.net_io_counters(pernic=True).get(iface, None)
+            if res is None:
+                res = psutil.net_io_counters()
         else:
-            return psutil.net_io_counters(pernic=True).get(iface, None)
+            res = psutil.net_io_counters()
+        return res
     return None
 
 
