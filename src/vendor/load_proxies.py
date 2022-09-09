@@ -20,7 +20,7 @@ def obtain_proxies(url):
                 if not check_proxy(data['respons'][p]):
                     data['respons'].pop(p)
             return data['respons']
-        return []
+    return []
         
 def check_proxy(proxy):
     exept_list = {
