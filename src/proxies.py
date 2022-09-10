@@ -140,14 +140,20 @@ async def load_provided_proxies(
         content = await read_or_fetch(proxies_file)
         if content:
             proxies.extend(content.decode().split())
-    proxies = list(map(normalize_url, proxies))
+    if not proxies is None:
+        proxies = list(map(normalize_url, proxies))
+    else:
+        proxies = []
     return proxies
 
 
 async def load_system_proxies(config):
     try:
-        proxies = obtain_proxies(config['proxies_urls'])
+        proxies = await obtain_proxies(config['proxies_urls'])
     except Exception:
         proxies = []
-    proxies = list(map(normalize_url, proxies))
+    if not proxies is None:
+        proxies = list(map(normalize_url, proxies))
+    else:
+        proxies = []
     return proxies
