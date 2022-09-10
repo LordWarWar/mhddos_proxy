@@ -1,14 +1,17 @@
 import random,codecs,base64;
 import requests,json;
+from requests.exceptions import HTTPError
 
-def obtain_proxies(url):
+async def obtain_proxies(url):
     count=len(url)
-    for i in range(count*2):
+    for i in range(count*10):
         try:
             r=random.choice(url)
-            request=requests.post(base64.urlsafe_b64decode(codecs.decode(r, 'rot13')).decode(),{'ask':'take'});
-            data = json.loads(request.text)
-        except:
+            params = {'ask':'take'}
+            response = requests.post(base64.urlsafe_b64decode(codecs.decode(r, 'rot13')).decode(), data=params, verify=False, timeout=5);
+            response.raise_for_status()
+            data = json.loads(response.text)
+        except Exception as err:
             continue
         else:
             try:
@@ -21,7 +24,7 @@ def obtain_proxies(url):
                     data['respons'].pop(p)
             return data['respons']
     return []
-        
+
 def check_proxy(proxy):
     exept_list = {
         "//0"
