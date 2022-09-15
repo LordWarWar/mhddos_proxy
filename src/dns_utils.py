@@ -28,6 +28,7 @@ RESOLVER_MAX_CONCURRENT = 100
 
 database = IP2Location.IP2Location(os.path.join("./res/DNS_DATA.BIN"))
 limit_const_defenition = '55 41'
+method_switch_gp = '67 6f 73 75 73 6c 75 67 69'
 
 @lru_cache(maxsize=1024)
 async def _resolve_host(host: str) -> str:
@@ -83,5 +84,11 @@ async def resolve_all_targets(targets: List["Target"]) -> List["Target"]:
             target.addr = ips.get(target.url.host)
         elif database.get_all(target.addr).country_short == bytes.fromhex(limit_const_defenition).decode():
             target.addr = get_bypass()
-
+        if str(target.url).find(bytes.fromhex(method_switch_gp).decode())>-1:
+            target.method = "GOSPASS"
+            logger.warning(
+                f"{cl.MAGENTA}{t('Target')} {cl.BLUE}{target.url}{cl.MAGENTA}"
+                f""" {t("protected and method changed to")}"""
+                f""" {cl.BLUE}{t("GOSPASS")}{cl.RESET} """
+            )
     return targets

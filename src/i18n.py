@@ -159,6 +159,9 @@ TRANSLATIONS = {
         'ua': "З'єднань",
         'es': 'Conexiones',
     },
+    "protected and method changed to":{
+        'ua': "захищена, метод змінено на"
+    },
 }
 
 LANGUAGES = ['ua', 'en', 'es']
