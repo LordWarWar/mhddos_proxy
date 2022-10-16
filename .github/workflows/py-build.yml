@@ -6,7 +6,7 @@ on:
 jobs:
   build:
     name: Build packages
-    runs-on: ${{ matrix.config.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         include:
